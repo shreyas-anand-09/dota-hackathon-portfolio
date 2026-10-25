@@ -6,7 +6,7 @@ export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState<string>('code');
 
   const categories = PORTFOLIO_CONFIG.skills;
-  const currentSkill = categories.find((c) => c.id === activeCategory)!;
+  const currentSkill = categories.find((c) => c.id === activeCategory) ?? categories[0];
 
   const getIcon = (id: string) => {
     switch (id) {

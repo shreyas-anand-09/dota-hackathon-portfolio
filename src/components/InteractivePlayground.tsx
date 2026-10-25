@@ -21,13 +21,14 @@ export const InteractivePlayground = ({ reducedMotion }: InteractivePlaygroundPr
 
     let lastTime = performance.now();
     const step = (now: number) => {
-      const delta = (now - lastTime) / 1000;
+      // Guard against negative delta or large jumps when tab is throttled
+      const delta = Math.min(0.1, Math.max(0, (now - lastTime) / 1000));
       lastTime = now;
 
       const baseRate = mode === 'qualifying' ? 0.12 : mode === 'race' ? 0.08 : 0.04;
       setProgress((prev) => {
         const next = prev + delta * baseRate * speedMultiplier;
-        return next >= 1 ? 0 : next;
+        return next >= 1 ? next % 1 : Math.max(0, next);
       });
 
       requestRef.current = requestAnimationFrame(step);
@@ -39,10 +40,11 @@ export const InteractivePlayground = ({ reducedMotion }: InteractivePlaygroundPr
     };
   }, [isPlaying, mode, speedMultiplier, reducedMotion]);
 
-  // Telemetry based on mode & progress
-  const rpm = Math.round(mode === 'qualifying' ? 11800 + Math.sin(progress * 12) * 1200 : mode === 'race' ? 10400 + Math.sin(progress * 8) * 800 : 7500);
+  // Telemetry based on mode & safeProgress
+  const safeProgress = Math.max(0, Math.min(1, isNaN(progress) ? 0 : progress));
+  const rpm = Math.round(mode === 'qualifying' ? 11800 + Math.sin(safeProgress * 12) * 1200 : mode === 'race' ? 10400 + Math.sin(safeProgress * 8) * 800 : 7500);
   const gear = mode === 'qualifying' ? 8 : mode === 'race' ? 7 : 4;
-  const throttle = Math.round(mode === 'safetyCar' ? 45 : Math.max(30, 85 + Math.sin(progress * 10) * 20));
+  const throttle = Math.round(mode === 'safetyCar' ? 45 : Math.max(30, 85 + Math.sin(safeProgress * 10) * 20));
   const tyreTemp = mode === 'qualifying' ? '104°C' : mode === 'race' ? '98°C' : '82°C';
   const delta = mode === 'qualifying' ? '-0.384s' : mode === 'race' ? '+0.012s' : 'SC INTERVAL';
 
@@ -178,7 +180,7 @@ export const InteractivePlayground = ({ reducedMotion }: InteractivePlaygroundPr
                   opacity="0.8"
                 />
 
-                {/* Moving Marker */}
+                {/* Moving Marker with Guaranteed Safe Coordinates */}
                 {(() => {
                   const points = [
                     { x: 100, y: 80 },
@@ -193,12 +195,18 @@ export const InteractivePlayground = ({ reducedMotion }: InteractivePlaygroundPr
                     { x: 60, y: 160 },
                     { x: 100, y: 80 },
                   ];
-                  const idx = Math.min(Math.floor(progress * (points.length - 1)), points.length - 2);
-                  const local = (progress * (points.length - 1)) - idx;
-                  const p1 = points[idx];
-                  const p2 = points[idx + 1];
-                  const carX = p1.x + (p2.x - p1.x) * local;
-                  const carY = p1.y + (p2.y - p1.y) * local;
+
+                  const numSegments = points.length - 1;
+                  const segmentProgress = safeProgress * numSegments;
+                  const maxIdx = Math.max(0, points.length - 2);
+                  const idx = Math.max(0, Math.min(Math.floor(segmentProgress), maxIdx));
+                  const local = Math.max(0, Math.min(1, segmentProgress - idx));
+
+                  const p1 = points[idx] ?? points[0] ?? { x: 100, y: 80 };
+                  const p2 = points[idx + 1] ?? points[points.length - 1] ?? p1;
+
+                  const carX = p1.x + ((p2.x ?? p1.x) - p1.x) * local;
+                  const carY = p1.y + ((p2.y ?? p1.y) - p1.y) * local;
 
                   return (
                     <g transform={`translate(${carX}, ${carY})`}>

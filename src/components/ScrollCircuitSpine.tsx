@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 
 interface ScrollCircuitSpineProps {
   reducedMotion: boolean;
 }
 
-export const ScrollCircuitSpine: React.FC<ScrollCircuitSpineProps> = ({ reducedMotion }) => {
+export const ScrollCircuitSpine = ({ reducedMotion }: ScrollCircuitSpineProps) => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const ScrollCircuitSpine: React.FC<ScrollCircuitSpineProps> = ({ reducedM
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
         const progress = Math.min(Math.max(window.scrollY / totalHeight, 0), 1);
-        setScrollProgress(progress);
+        setScrollProgress(isNaN(progress) ? 0 : progress);
       }
     };
 
@@ -69,7 +69,7 @@ export const ScrollCircuitSpine: React.FC<ScrollCircuitSpineProps> = ({ reducedM
 
           {/* Checkpoint nodes */}
           {sectors.map((sector, index) => {
-            const fraction = index / (sectors.length - 1);
+            const fraction = index / Math.max(1, sectors.length - 1);
             const isPassed = scrollProgress >= fraction - 0.02;
 
             return (

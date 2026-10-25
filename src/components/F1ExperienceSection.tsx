@@ -14,7 +14,7 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
 
   const requestRef = useRef<number | null>(null);
 
-  // Smooth lap simulation loop
+  // Smooth lap simulation loop with time delta validation
   useEffect(() => {
     if (reducedMotion || !isPlayingLap) {
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
@@ -23,12 +23,13 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
 
     let lastTime = performance.now();
     const animate = (time: number) => {
-      const delta = (time - lastTime) / 1000;
+      // Guard against negative delta or large jumps when tab is throttled
+      const delta = Math.min(0.1, Math.max(0, (time - lastTime) / 1000));
       lastTime = time;
 
       setLapProgress((prev) => {
         const next = prev + delta * 0.08; // ~12.5 seconds per lap
-        return next >= 1 ? 0 : next;
+        return next >= 1 ? next % 1 : Math.max(0, next);
       });
 
       requestRef.current = requestAnimationFrame(animate);
@@ -41,9 +42,10 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
   }, [isPlayingLap, reducedMotion]);
 
   // Derived simulated telemetry values based on lapProgress
-  const currentSpeed = Math.round(210 + Math.sin(lapProgress * Math.PI * 4) * 85 + 35);
+  const safeProgress = Math.max(0, Math.min(1, isNaN(lapProgress) ? 0 : lapProgress));
+  const currentSpeed = Math.round(210 + Math.sin(safeProgress * Math.PI * 4) * 85 + 35);
   const currentGear = currentSpeed > 300 ? 8 : currentSpeed > 260 ? 7 : currentSpeed > 210 ? 6 : currentSpeed > 160 ? 5 : 4;
-  const currentGForce = (1.8 + Math.abs(Math.sin(lapProgress * Math.PI * 6)) * 2.8).toFixed(1);
+  const currentGForce = (1.8 + Math.abs(Math.sin(safeProgress * Math.PI * 6)) * 2.8).toFixed(1);
   const drsStatus = currentSpeed > 290 ? 'ACTIVE' : 'STANDBY';
 
   const circuitTurns = [
@@ -55,7 +57,8 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
     { id: 6, name: "Turn 6: Final Apex", x: 110, y: 170, desc: "Always preparing for the next competition and product launch." },
   ];
 
-  const currentPitData = PORTFOLIO_CONFIG.f1Experience.pitWallModes.find(m => m.id === pitMode)!;
+  const currentPitData = PORTFOLIO_CONFIG.f1Experience.pitWallModes.find(m => m.id === pitMode) 
+    ?? PORTFOLIO_CONFIG.f1Experience.pitWallModes[0];
 
   return (
     <section id="f1-experience" className="py-24 px-4 lg:px-8 bg-graphite relative overflow-hidden border-b border-charcoal-border/60">
@@ -170,7 +173,7 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
               {/* Progress Bar / Sector Strip */}
               <div className="absolute top-3 right-3 bg-charcoal-surface/90 border border-charcoal-border rounded px-3 py-1.5 text-[10px] font-mono backdrop-blur-sm z-20 flex items-center space-x-2">
                 <span className="text-silver">LAP PROGRESS:</span>
-                <span className="text-racing-red font-bold">{Math.round(lapProgress * 100)}%</span>
+                <span className="text-racing-red font-bold">{Math.round(safeProgress * 100)}%</span>
               </div>
 
               {/* High-Precision SVG Circuit Track */}
@@ -227,6 +230,8 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
                 {/* Interactive Clickable Apex Points */}
                 {circuitTurns.map((turn) => {
                   const isHovered = selectedTurn === turn.id;
+                  const turnX = turn?.x ?? 0;
+                  const turnY = turn?.y ?? 0;
                   return (
                     <g 
                       key={turn.id} 
@@ -234,8 +239,8 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
                       onClick={() => setSelectedTurn(turn.id)}
                     >
                       <circle
-                        cx={turn.x}
-                        cy={turn.y}
+                        cx={turnX}
+                        cy={turnY}
                         r={isHovered ? 9 : 6}
                         fill={isHovered ? '#E53935' : '#0B0D10'}
                         stroke="#E53935"
@@ -243,8 +248,8 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
                         className="transition-all"
                       />
                       <text
-                        x={turn.x + 10}
-                        y={turn.y + 4}
+                        x={turnX + 10}
+                        y={turnY + 4}
                         fill="#F3F1EB"
                         fontSize="9"
                         fontFamily="JetBrains Mono"
@@ -256,7 +261,7 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
                   );
                 })}
 
-                {/* Animated Vehicle Telemetry Beacon Marker */}
+                {/* Animated Vehicle Telemetry Beacon Marker with 100% Guaranteed Safe Indexing */}
                 <g filter="url(#redGlow)">
                   {(() => {
                     const points = [
@@ -279,12 +284,18 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
                       { x: 145, y: 85 },
                       { x: 120, y: 70 },
                     ];
-                    const idx = Math.min(Math.floor(lapProgress * (points.length - 1)), points.length - 2);
-                    const localProg = (lapProgress * (points.length - 1)) - idx;
-                    const p1 = points[idx];
-                    const p2 = points[idx + 1];
-                    const carX = p1.x + (p2.x - p1.x) * localProg;
-                    const carY = p1.y + (p2.y - p1.y) * localProg;
+
+                    const numSegments = points.length - 1;
+                    const segmentProgress = safeProgress * numSegments;
+                    const maxIdx = Math.max(0, points.length - 2);
+                    const idx = Math.max(0, Math.min(Math.floor(segmentProgress), maxIdx));
+                    const localProg = Math.max(0, Math.min(1, segmentProgress - idx));
+
+                    const p1 = points[idx] ?? points[0] ?? { x: 120, y: 70 };
+                    const p2 = points[idx + 1] ?? points[points.length - 1] ?? p1;
+
+                    const carX = p1.x + ((p2.x ?? p1.x) - p1.x) * localProg;
+                    const carY = p1.y + ((p2.y ?? p1.y) - p1.y) * localProg;
 
                     return (
                       <g transform={`translate(${carX}, ${carY})`}>

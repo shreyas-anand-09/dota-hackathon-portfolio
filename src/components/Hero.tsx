@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { ArrowRight, Gauge, Cpu, Trophy, Terminal, Compass } from 'lucide-react';
 
@@ -6,7 +6,7 @@ interface HeroProps {
   reducedMotion: boolean;
 }
 
-export const Hero: React.FC<HeroProps> = ({ reducedMotion }) => {
+export const Hero = ({ reducedMotion }: HeroProps) => {
   const [telemetryMode, setTelemetryMode] = useState<'aero' | 'circuit' | 'kinematics'>('circuit');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -15,7 +15,7 @@ export const Hero: React.FC<HeroProps> = ({ reducedMotion }) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
-    setMousePos({ x, y });
+    setMousePos({ x: isNaN(x) ? 0 : x, y: isNaN(y) ? 0 : y });
   };
 
   const handleMouseLeave = () => {
@@ -28,6 +28,9 @@ export const Hero: React.FC<HeroProps> = ({ reducedMotion }) => {
       el.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
     }
   };
+
+  const mouseX = mousePos?.x ?? 0;
+  const mouseY = mousePos?.y ?? 0;
 
   return (
     <section
@@ -98,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({ reducedMotion }) => {
           <div className="grid grid-cols-3 gap-3 pt-2 max-w-lg">
             <div className="bg-charcoal-surface/60 border border-charcoal-border p-3 rounded">
               <div className="text-[10px] font-mono text-silver uppercase flex items-center space-x-1">
-                <Trophy className="w-3 h-3 text-racing-red" />
+                <Trophy className="w-3.5 h-3.5 text-racing-red" />
                 <span>ATMOS 26</span>
               </div>
               <div className="text-sm font-display font-bold text-warm-white mt-1">
@@ -109,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({ reducedMotion }) => {
 
             <div className="bg-charcoal-surface/60 border border-charcoal-border p-3 rounded">
               <div className="text-[10px] font-mono text-silver uppercase flex items-center space-x-1">
-                <Terminal className="w-3 h-3 text-racing-green" />
+                <Terminal className="w-3.5 h-3.5 text-racing-green" />
                 <span>DEV FOCUS</span>
               </div>
               <div className="text-sm font-display font-bold text-warm-white mt-1">
@@ -120,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ reducedMotion }) => {
 
             <div className="bg-charcoal-surface/60 border border-charcoal-border p-3 rounded">
               <div className="text-[10px] font-mono text-silver uppercase flex items-center space-x-1">
-                <Cpu className="w-3 h-3 text-racing-amber" />
+                <Cpu className="w-3.5 h-3.5 text-racing-amber" />
                 <span>DISCIPLINE</span>
               </div>
               <div className="text-sm font-display font-bold text-warm-white mt-1">
@@ -155,7 +158,7 @@ export const Hero: React.FC<HeroProps> = ({ reducedMotion }) => {
           <div 
             className="w-full max-w-[460px] aspect-square rounded-2xl bg-charcoal-deep/80 border border-charcoal-border/80 p-5 relative overflow-hidden backdrop-blur-sm shadow-2xl transition-transform duration-300"
             style={{
-              transform: reducedMotion ? 'none' : `perspective(1000px) rotateY(${mousePos.x * 0.4}deg) rotateX(${-mousePos.y * 0.4}deg)`,
+              transform: reducedMotion ? 'none' : `perspective(1000px) rotateY(${mouseX * 0.4}deg) rotateX(${-mouseY * 0.4}deg)`,
             }}
           >
             {/* Corner Bracket Overlays */}

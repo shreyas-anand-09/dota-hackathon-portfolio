@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { ScrollCircuitSpine } from './components/ScrollCircuitSpine';
@@ -32,42 +33,66 @@ export function App() {
   return (
     <div className={`min-h-screen bg-graphite text-warm-white selection:bg-racing-red selection:text-white ${reducedMotion ? 'reduced-motion' : ''}`}>
       {/* Circuit Spine Progress Rail (2XL screens) */}
-      <ScrollCircuitSpine reducedMotion={reducedMotion} />
+      <ErrorBoundary>
+        <ScrollCircuitSpine reducedMotion={reducedMotion} />
+      </ErrorBoundary>
 
       {/* Main Top Navigation & Status Bar */}
-      <Navigation reducedMotion={reducedMotion} setReducedMotion={setReducedMotion} />
+      <ErrorBoundary>
+        <Navigation reducedMotion={reducedMotion} setReducedMotion={setReducedMotion} />
+      </ErrorBoundary>
 
       {/* Main Content Area */}
       <main id="main-content" className="relative z-10">
         {/* Sector 01: Starting Grid */}
-        <Hero reducedMotion={reducedMotion} />
+        <ErrorBoundary>
+          <Hero reducedMotion={reducedMotion} />
+        </ErrorBoundary>
 
         {/* Sector 02: About / Origins & Vector */}
-        <AboutSection />
+        <ErrorBoundary>
+          <AboutSection />
+        </ErrorBoundary>
 
         {/* Sector 03: The Garage / Projects & Case Studies */}
-        <GarageSection />
+        <ErrorBoundary>
+          <GarageSection />
+        </ErrorBoundary>
 
         {/* Sector 04: F1 — The Main Event (Defining Feature) */}
-        <F1ExperienceSection reducedMotion={reducedMotion} />
+        <ErrorBoundary>
+          <F1ExperienceSection reducedMotion={reducedMotion} />
+        </ErrorBoundary>
 
         {/* Sector 05: Liverpool FC Interlude */}
-        <LiverpoolSection />
+        <ErrorBoundary>
+          <LiverpoolSection />
+        </ErrorBoundary>
 
         {/* Sector 06: Achievements / Results That Matter */}
-        <AchievementsSection />
+        <ErrorBoundary>
+          <AchievementsSection />
+        </ErrorBoundary>
 
         {/* Sector 07: Skills / What I'm Building With */}
-        <SkillsSection />
+        <ErrorBoundary>
+          <SkillsSection />
+        </ErrorBoundary>
 
         {/* Sector 08: Personality / Not Here To Stand Still */}
-        <PersonalitySection />
+        <ErrorBoundary>
+          <PersonalitySection />
+        </ErrorBoundary>
 
         {/* Sector 09: Interactive Playground / Apex Simulator */}
-        <InteractivePlayground reducedMotion={reducedMotion} />
+        <ErrorBoundary>
+          <InteractivePlayground reducedMotion={reducedMotion} />
+        </ErrorBoundary>
 
         {/* Sector 10: Next Grid / Contact & Paddock */}
-        <ContactSection reducedMotion={reducedMotion} />
+        <ErrorBoundary>
+          <ContactSection reducedMotion={reducedMotion} />
+        </ErrorBoundary>
       </main>
     </div>
   );

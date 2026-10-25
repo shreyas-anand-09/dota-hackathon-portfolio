@@ -6,6 +6,7 @@ export const AboutSection = () => {
   const [selectedWaypoint, setSelectedWaypoint] = useState<number>(2); // Default to current BITS Pilani
 
   const waypoints = PORTFOLIO_CONFIG.journey;
+  const currentWaypoint = waypoints[selectedWaypoint] ?? waypoints[0];
 
   return (
     <section id="about" className="py-24 px-4 lg:px-8 bg-charcoal-deep border-b border-charcoal-border/50 relative">
@@ -141,12 +142,12 @@ export const AboutSection = () => {
               <div>
                 <div className="text-xs font-mono text-silver uppercase">CURRENT SELECTION</div>
                 <div className="font-display font-bold text-sm text-warm-white">
-                  {waypoints[selectedWaypoint].location} — {waypoints[selectedWaypoint].period}
+                  {currentWaypoint.location} — {currentWaypoint.period}
                 </div>
               </div>
             </div>
             <div className="text-xs font-mono text-silver-light max-w-md">
-              {waypoints[selectedWaypoint].description}
+              {currentWaypoint.description}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { Menu, X, Activity, ArrowUpRight, Radio } from 'lucide-react';
 
@@ -7,7 +7,7 @@ interface NavigationProps {
   setReducedMotion: (val: boolean) => void;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ reducedMotion, setReducedMotion }) => {
+export const Navigation = ({ reducedMotion, setReducedMotion }: NavigationProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
