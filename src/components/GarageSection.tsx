@@ -538,8 +538,12 @@ export const GarageSection = () => {
           role="dialog"
           aria-modal="true"
           aria-labelledby="case-study-title"
+          onClick={() => setSelectedCaseStudy(null)}
         >
-          <div className="bg-charcoal border border-charcoal-border max-w-3xl w-full rounded-2xl p-6 lg:p-8 space-y-6 shadow-2xl relative my-8">
+          <div 
+            className="bg-charcoal border border-charcoal-border max-w-3xl w-full rounded-2xl p-6 lg:p-8 space-y-6 shadow-2xl relative my-8"
+            onClick={(e) => e.stopPropagation()}
+          >
             
             {/* Close Button */}
             <button

@@ -19,9 +19,17 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 76px;
+    scroll-snap-type: y proximity;
     background-color: #080A0E;
     color: #F8FAFC;
     color-scheme: dark;
+  }
+
+  section, footer {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    scroll-margin-top: 76px;
   }
 
   body {

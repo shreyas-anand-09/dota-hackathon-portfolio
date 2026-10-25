@@ -11,8 +11,8 @@ import { SkillsSection } from './components/SkillsSection';
 import { PersonalitySection } from './components/PersonalitySection';
 import { InteractivePlayground } from './components/InteractivePlayground';
 import { ContactSection } from './components/ContactSection';
-import { SpatialSection } from './components/SpatialSection';
-import { MasterDocumentInspector } from './components/MasterDocumentInspector';
+import { SectionDivider } from './components/SectionDivider';
+import { useGsapHelicalScroll } from './hooks/useGsapHelicalScroll';
 
 export function App() {
   const [reducedMotion, setReducedMotion] = useState<boolean>(() => {
@@ -21,6 +21,9 @@ export function App() {
     }
     return false;
   });
+
+  // GSAP ScrollTrigger Helical Spiral Transitions Controller
+  useGsapHelicalScroll(reducedMotion);
 
   // Listen to OS-level prefers-reduced-motion changes
   useEffect(() => {
@@ -38,142 +41,84 @@ export function App() {
         <Navigation reducedMotion={reducedMotion} setReducedMotion={setReducedMotion} />
       </ErrorBoundary>
 
-      {/* Floating Master Engineering File Inspector & Blueprint Minimap */}
-      <ErrorBoundary>
-        <MasterDocumentInspector reducedMotion={reducedMotion} />
-      </ErrorBoundary>
+      {/* Main Content Area: Smooth, Stable, Creative Section Transitions with Scroll-Snapping */}
+      <main id="main-content" className="relative z-10">
+        {/* Chapter 01: Hero / Starting Grid */}
+        <ErrorBoundary>
+          <Hero reducedMotion={reducedMotion} />
+        </ErrorBoundary>
 
-      {/* Main Content Area: Infinite Technical Dossier Canvas */}
-      <main id="main-content" className="relative z-10 overflow-hidden">
-        {/* Sector 01: Hero / Starting Grid */}
-        <SpatialSection
-          id="hero"
-          sectorCode="SEC_01"
-          fileLabel="STARTING GRID // PERSONAL DOSSIER"
-          coordinates="17.54°N, 78.57°E"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <Hero reducedMotion={reducedMotion} />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Helical Transition Bridge: Hero ➔ About */}
+        <SectionDivider variant="blue-wave" label="HELIX // TRAJECTORY SPIRAL" />
 
-        {/* Sector 02: About / Trajectory & Origins */}
-        <SpatialSection
-          id="about"
-          sectorCode="SEC_02"
-          fileLabel="TRAJECTORY // ROOTS & PERSPECTIVE"
-          coordinates="PALAKKAD ➔ LIVERPOOL ➔ HYDERABAD"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <AboutSection />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Chapter 02: About / Trajectory & Origins */}
+        <ErrorBoundary>
+          <AboutSection />
+        </ErrorBoundary>
 
-        {/* Sector 03: The Garage / Engineering Workbench */}
-        <SpatialSection
-          id="garage"
-          sectorCode="SEC_03"
-          fileLabel="ENGINEERING WORKBENCH // CODE & CASE STUDIES"
-          coordinates="SYNCHRONY_01 // SUPERAPP_02 // GAME_03"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <GarageSection />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Helical Transition Bridge: About ➔ Garage */}
+        <SectionDivider variant="circuit-wire" label="HELIX // WORKBENCH COIL" />
 
-        {/* Sector 04: Formula 1 / Motorsport Architecture */}
-        <SpatialSection
-          id="f1-experience"
-          sectorCode="SEC_04"
-          fileLabel="MOTORSPORT // FLUID DYNAMICS & APEX GEOMETRY"
-          coordinates="AUTÓDROMO DE SHREYAS // 2026 SPEC"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <F1ExperienceSection reducedMotion={reducedMotion} />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Chapter 03: The Garage / Engineering Workbench & Projects */}
+        <ErrorBoundary>
+          <GarageSection />
+        </ErrorBoundary>
 
-        {/* Sector 05: Liverpool FC Interlude */}
-        <SpatialSection
-          id="liverpool"
-          sectorCode="SEC_05"
-          fileLabel="TACTICAL HERITAGE // ANFIELD WORK ETHIC"
-          coordinates="MERSEYSIDE // 9 FORMATIVE YEARS"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <LiverpoolSection />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Helical Transition Bridge: Garage ➔ Formula 1 */}
+        <SectionDivider variant="racing-kerb" label="HELIX // MOTORSPORT APEX" />
 
-        {/* Sector 06: Innovation & Achievements / Inspire Manak Awards */}
-        <SpatialSection
-          id="achievements"
-          sectorCode="SEC_06"
-          fileLabel="INNOVATION & PODIUM ARCHIVE // INSPIRE MANAK"
-          coordinates="DST_GOVT_INDIA // ATMOS_26_CHAMPION"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <AchievementsSection />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Chapter 04: Formula 1 / Motorsport Art Direction */}
+        <ErrorBoundary>
+          <F1ExperienceSection reducedMotion={reducedMotion} />
+        </ErrorBoundary>
 
-        {/* Sector 07: Skills / Technical Arsenal */}
-        <SpatialSection
-          id="skills"
-          sectorCode="SEC_07"
-          fileLabel="TECHNICAL ARSENAL // FIRST-PRINCIPLES"
-          coordinates="PYTHON // MECHANICS // EDA // SYSTEMS"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <SkillsSection />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Helical Transition Bridge: Formula 1 ➔ Liverpool */}
+        <SectionDivider variant="crimson-fade" label="HELIX // MERSEYSIDE WEAVE" />
 
-        {/* Sector 08: Personality / Mindset & Ethos */}
-        <SpatialSection
-          id="personality"
-          sectorCode="SEC_08"
-          fileLabel="ETHOS & DRIVING MINDSET"
-          coordinates="AMBITION // PRAGMATIC BUILDER // RIGOR"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <PersonalitySection />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Chapter 05: Liverpool FC Interlude */}
+        <ErrorBoundary>
+          <LiverpoolSection />
+        </ErrorBoundary>
 
-        {/* Sector 09: Apex Simulator / Interactive Telemetry Bench */}
-        <SpatialSection
-          id="playground"
-          sectorCode="SEC_09"
-          fileLabel="TELEMETRY LAB // APEX SIMULATOR"
-          coordinates="QUALIFYING // RACE // PURPLE_DELTA"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <InteractivePlayground reducedMotion={reducedMotion} />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Helical Transition Bridge: Liverpool ➔ Achievements */}
+        <SectionDivider variant="amber-glow" label="HELIX // PODIUM HORIZON" />
 
-        {/* Sector 10: Finale / Contact & Paddock Directory */}
-        <SpatialSection
-          id="contact"
-          sectorCode="SEC_10"
-          fileLabel="TERMINAL PADDOCK // INITIATE TRANSMISSION"
-          coordinates="INBOX_DIRECT // BITS_HYDERABAD"
-          reducedMotion={reducedMotion}
-        >
-          <ErrorBoundary>
-            <ContactSection reducedMotion={reducedMotion} />
-          </ErrorBoundary>
-        </SpatialSection>
+        {/* Chapter 06: Innovation & Achievements / Inspire Manak Awards */}
+        <ErrorBoundary>
+          <AchievementsSection />
+        </ErrorBoundary>
+
+        {/* Helical Transition Bridge: Achievements ➔ Skills */}
+        <SectionDivider variant="emerald-grid" label="HELIX // ARSENAL LATTICE" />
+
+        {/* Chapter 07: Skills / Technical Arsenal */}
+        <ErrorBoundary>
+          <SkillsSection />
+        </ErrorBoundary>
+
+        {/* Helical Transition Bridge: Skills ➔ Personality */}
+        <SectionDivider variant="violet-slant" label="HELIX // MINDSET SLANT" />
+
+        {/* Chapter 08: Personality / Mindset & Ethos */}
+        <ErrorBoundary>
+          <PersonalitySection />
+        </ErrorBoundary>
+
+        {/* Helical Transition Bridge: Personality ➔ Playground */}
+        <SectionDivider variant="circuit-wire" label="HELIX // SIMULATOR BENCH" />
+
+        {/* Chapter 09: Apex Simulator / Interactive Telemetry Bench */}
+        <ErrorBoundary>
+          <InteractivePlayground reducedMotion={reducedMotion} />
+        </ErrorBoundary>
+
+        {/* Helical Transition Bridge: Playground ➔ Contact */}
+        <SectionDivider variant="finale-horizon" label="HELIX // TERMINAL PADDOCK" />
+
+        {/* Chapter 10: Finale / Contact & Paddock Directory */}
+        <ErrorBoundary>
+          <ContactSection reducedMotion={reducedMotion} />
+        </ErrorBoundary>
       </main>
     </div>
   );
