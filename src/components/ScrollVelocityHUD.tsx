@@ -31,7 +31,7 @@ export const ScrollVelocityHUD = ({ reducedMotion }: ScrollVelocityHUDProps) => 
       const mappedKmh = Math.min(345, Math.round(rawSpeed * 0.16));
 
       setSpeedKmh((prev) => Math.max(mappedKmh, Math.round(prev * 0.85)));
-      setIsWarping(mappedKmh > 120);
+      setIsWarping(mappedKmh > 3320);
 
       lastScrollY.current = currentScrollY;
       lastTime.current = now;
@@ -86,16 +86,7 @@ export const ScrollVelocityHUD = ({ reducedMotion }: ScrollVelocityHUDProps) => 
 
   return (
     <>
-      {/* Dynamic Speed Streaks along screen edges when scrolling rapidly */}
-      {isWarping && (
-        <div className="fixed inset-0 pointer-events-none z-30 overflow-hidden" aria-hidden="true">
-          <div className="speed-line left-4 top-1/4 h-32" />
-          <div className="speed-line left-12 top-2/3 h-48" style={{ animationDelay: '0.3s' }} />
-          <div className="speed-line right-6 top-1/3 h-40" style={{ animationDelay: '0.15s' }} />
-          <div className="speed-line right-16 top-3/4 h-56" style={{ animationDelay: '0.45s' }} />
-          <div className="absolute inset-0 bg-racing-red/5 mix-blend-overlay animate-pulse pointer-events-none" />
-        </div>
-      )}
+      
 
       {/* Floating Motorsport Cockpit HUD */}
       <div 
