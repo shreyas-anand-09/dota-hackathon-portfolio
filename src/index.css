@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-graphite: #0B0D10;
+    --bg-charcoal: #15191E;
+    --text-warm-white: #F3F1EB;
+    --racing-red: #E53935;
+    --muted-silver: #858C95;
+    --telemetry-green: #00E676;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #0B0D10;
+    color: #F3F1EB;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #0B0D10;
+    color: #F3F1EB;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Focus ring for keyboard accessibility */
+  :focus-visible {
+    outline: 2px solid #E53935;
+    outline-offset: 3px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0D10;
+}
+::-webkit-scrollbar-thumb {
+  background: #242C35;
+  border-radius: 4px;
+  border: 1px solid #2F3844;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E53935;
+}
+
+/* Precision Grid Texture */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(243, 241, 235, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Racing Kerb Pattern */
+.racing-kerb {
+  background: repeating-linear-gradient(
+    -45deg,
+    #E53935,
+    #E53935 12px,
+    #F3F1EB 12px,
+    #F3F1EB 24px
+  );
+}
+
+.racing-kerb-subtle {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(229, 57, 53, 0.35),
+    rgba(229, 57, 53, 0.35) 8px,
+    rgba(243, 241, 235, 0.15) 8px,
+    rgba(243, 241, 235, 0.15) 16px
+  );
+}
+
+/* Carbon Fiber subtle texture */
+.carbon-fiber {
+  background: 
+    linear-gradient(27deg, #15191E 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #15191E 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #1a2027 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #1a2027 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #12161b 10px, transparent 10px),
+    linear-gradient(#15191E 25%, #0d1014 25%, #0d1014 50%, transparent 50%, transparent 75%, #181d24 75%, #181d24);
+  background-color: #0F1216;
+  background-size: 20px 20px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
