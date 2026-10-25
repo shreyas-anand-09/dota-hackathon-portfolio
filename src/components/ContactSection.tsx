@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
-import { Mail, Copy, Check, ArrowUp, MapPin } from 'lucide-react';
+import { Mail, Copy, Check, ArrowUp, MapPin, Send } from 'lucide-react';
 
 interface ContactSectionProps {
   reducedMotion: boolean;
@@ -21,65 +21,71 @@ export const ContactSection = ({ reducedMotion }: ContactSectionProps) => {
   };
 
   return (
-    <footer id="contact" className="py-24 px-4 lg:px-8 bg-charcoal-deep relative overflow-hidden">
-      
-      {/* Top Border with racing kerb accents */}
-      <div className="absolute top-0 left-0 right-0 h-1.5 racing-kerb opacity-70" />
+    <footer id="contact" className="py-28 px-4 lg:px-8 bg-navy-deep relative overflow-hidden border-t border-navy-border/60">
+      {/* Cinematic Ambient Finale Lighting */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-electric-blue/15 blur-[170px] rounded-full pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-1/4 right-10 w-[450px] h-[400px] bg-vivid-purple/15 blur-[150px] rounded-full pointer-events-none"
+        aria-hidden="true"
+      />
 
       <div className="max-w-7xl mx-auto space-y-20 relative z-10">
         
         {/* Sector Tag & Section Header */}
         <div className="space-y-4">
           <div className="flex items-center space-x-2 text-xs font-mono">
-            <span className="w-2 h-2 rounded-full bg-racing-red" />
-            <span className="text-racing-red font-bold">SECTOR 10 // NEXT GRID</span>
+            <span className="w-2 h-2 rounded-full bg-electric-sky animate-pulse" />
+            <span className="text-electric-sky font-bold">CHAPTER 09 // FINALE &amp; PADDOCK</span>
             <span className="text-silver-dark">•</span>
-            <span className="text-silver">PADDOCK DIRECTORY</span>
+            <span className="text-silver">INITIATE TRANSMISSION</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8">
-              <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-warm-white tracking-tight leading-tight">
+              <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-7xl text-warm-white tracking-tight leading-[0.95]">
                 THE NEXT THING <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-racing-red via-warm-white to-silver-light">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-sky via-electric-blue to-vivid-purple">
                   STARTS HERE.
                 </span>
               </h2>
             </div>
-            <div className="lg:col-span-4 text-silver text-sm font-sans leading-relaxed">
+            <div className="lg:col-span-4 text-silver text-sm sm:text-base font-sans leading-relaxed">
               Always open to discussing upcoming hackathons, engineering software, campus utilities, and ambitious building ventures.
             </div>
           </div>
         </div>
 
         {/* Central Contact Card */}
-        <div className="bg-charcoal/90 border border-charcoal-border rounded-2xl p-8 lg:p-12 shadow-2xl relative overflow-hidden">
+        <div className="bg-gradient-to-br from-navy-surface via-navy-surface to-navy-elevated border border-navy-border hover:border-electric-sky/50 rounded-3xl p-8 lg:p-14 shadow-2xl relative overflow-hidden transition-all duration-300 card-hover-elevated glow-blue">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             {/* Left: Contact Narrative & Actions */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-charcoal-surface border border-charcoal-border text-xs font-mono text-warm-white">
-                <span className="w-2 h-2 rounded-full bg-racing-green animate-pulse" />
-                <span>OPEN FOR HACKATHONS &amp; ENGINEERING VENTURES</span>
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-navy-deep border border-navy-border text-xs font-mono text-warm-white">
+                <span className="w-2 h-2 rounded-full bg-emerald-green animate-pulse" />
+                <span className="text-silver-light font-medium">OPEN FOR HACKATHONS &amp; ENGINEERING VENTURES</span>
               </div>
 
-              <h3 className="font-display font-bold text-2xl sm:text-3xl text-warm-white leading-snug">
+              <h3 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-warm-white leading-snug">
                 Let's construct something that outperforms the competition.
               </h3>
 
               <p className="text-silver text-sm sm:text-base font-sans leading-relaxed">
-                Whether you're gearing up for a competitive hackathon team, want to discuss student utility architecture, or exchange ideas on mechanical engineering and Python—drop a message.
+                Whether you're gearing up for a competitive hackathon team, want to discuss campus utility architecture, or exchange perspectives on mechanical engineering and Python—drop a message.
               </p>
 
               {/* Email Copy Card */}
-              <div className="p-4 rounded-xl bg-charcoal-deep border border-charcoal-border/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-center space-x-3 overflow-hidden">
-                  <div className="w-9 h-9 rounded-lg bg-racing-red/10 border border-racing-red/30 flex items-center justify-center shrink-0">
-                    <Mail className="w-4 h-4 text-racing-red" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-navy-deep border border-navy-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+                <div className="flex items-center space-x-3.5 overflow-hidden">
+                  <div className="w-11 h-11 rounded-xl bg-electric-blue/15 border border-electric-blue/30 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-electric-sky" />
                   </div>
                   <div className="truncate">
-                    <div className="text-[10px] font-mono text-silver uppercase">ACADEMIC &amp; DIRECT INBOX</div>
+                    <div className="text-[10px] font-mono text-silver uppercase tracking-wider">ACADEMIC &amp; DIRECT INBOX</div>
                     <div className="text-xs sm:text-sm font-mono font-bold text-warm-white truncate">
                       {email}
                     </div>
@@ -89,60 +95,77 @@ export const ContactSection = ({ reducedMotion }: ContactSectionProps) => {
                 <div className="flex items-center space-x-2 shrink-0">
                   <button
                     onClick={handleCopyEmail}
-                    className="px-3.5 py-2 rounded bg-charcoal-surface hover:bg-charcoal-elevated border border-charcoal-border text-xs font-mono text-warm-white flex items-center space-x-1.5 transition-colors"
+                    className="px-4 py-2.5 rounded-xl bg-navy-surface hover:bg-navy-elevated border border-navy-border text-xs font-mono text-warm-white flex items-center space-x-1.5 transition-all active:scale-95"
+                    aria-label="Copy email address to clipboard"
                   >
-                    {copied ? <Check className="w-3.5 h-3.5 text-racing-green" /> : <Copy className="w-3.5 h-3.5 text-silver" />}
+                    {copied ? <Check className="w-4 h-4 text-emerald-green" /> : <Copy className="w-4 h-4 text-silver" />}
                     <span>{copied ? 'COPIED!' : 'COPY'}</span>
                   </button>
                   <a
                     href={`mailto:${email}`}
-                    className="px-4 py-2 rounded bg-racing-red hover:bg-racing-redDark text-white text-xs font-mono font-bold uppercase tracking-wider transition-colors"
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-electric-blue to-vivid-purple hover:brightness-110 text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-lg shadow-electric-blue/25 flex items-center space-x-1.5 active:scale-95"
                   >
-                    SEND EMAIL
+                    <Send className="w-3.5 h-3.5" />
+                    <span>SEND EMAIL</span>
                   </a>
                 </div>
               </div>
 
               {/* Campus Location */}
-              <div className="flex items-center space-x-2 text-xs font-mono text-silver">
-                <MapPin className="w-4 h-4 text-racing-red shrink-0" />
+              <div className="flex items-center space-x-2 text-xs font-mono text-silver pt-1">
+                <MapPin className="w-4 h-4 text-electric-sky shrink-0" />
                 <span>BITS Pilani, Hyderabad Campus, Telangana 500078, India</span>
               </div>
             </div>
 
             {/* Right: Loop-Back Circuit Telemetry Seal */}
-            <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 bg-charcoal-deep rounded-xl border border-charcoal-border text-center space-y-4">
+            <div className="lg:col-span-5 flex flex-col items-center justify-center p-8 bg-navy-deep rounded-2xl border border-navy-border text-center space-y-5 shadow-inner">
               
               {/* Loop-back Circuit SVG */}
               <div className="w-36 h-36 relative flex items-center justify-center">
                 <svg viewBox="0 0 100 100" className="w-full h-full" fill="none">
-                  <circle cx="50" cy="50" r="42" stroke="#2F3844" strokeWidth="2" strokeDasharray="3 4" />
-                  <circle cx="50" cy="50" r="42" stroke="#E53935" strokeWidth="2.5" strokeDasharray="25 60" className="animate-spin" style={{ animationDuration: '8s' }} />
-                  <circle cx="50" cy="8" r="4" fill="#E53935" />
-                  <path d="M 50 25 L 50 40 M 42 33 L 50 25 L 58 33" stroke="#F3F1EB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="50" cy="50" r="42" stroke="#334155" strokeWidth="2" strokeDasharray="4 4" />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    stroke="#38BDF8"
+                    strokeWidth="2.5"
+                    strokeDasharray="30 60"
+                    className="animate-spin"
+                    style={{ animationDuration: '10s' }}
+                  />
+                  <circle cx="50" cy="8" r="4" fill="#38BDF8" />
+                  <path
+                    d="M 50 25 L 50 40 M 42 33 L 50 25 L 58 33"
+                    stroke="#F8FAFC"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center pt-8">
-                  <span className="text-[10px] font-mono text-silver">CHECKERED</span>
-                  <span className="text-xs font-display font-bold text-warm-white">LAP 01</span>
+                  <span className="text-[10px] font-mono text-silver uppercase">EXPEDITION</span>
+                  <span className="text-xs font-display font-bold text-warm-white">SECTOR 09</span>
                 </div>
               </div>
 
               <div className="space-y-1">
                 <div className="font-display font-bold text-base text-warm-white">
-                  FULL CIRCUIT COMPLETED
+                  FULL EXPEDITION TRAVERSED
                 </div>
-                <p className="text-xs font-mono text-silver-dark max-w-xs">
-                  Return to the starting grid to inspect technical telemetries or explore project case studies.
+                <p className="text-xs font-mono text-silver max-w-xs leading-relaxed">
+                  Return to the starting grid to review engineering schematics or explore project case studies.
                 </p>
               </div>
 
               {/* Back to Top Button */}
               <button
                 onClick={scrollToTop}
-                className="px-5 py-2.5 rounded bg-charcoal-surface hover:bg-charcoal-elevated border border-charcoal-border hover:border-racing-red text-warm-white text-xs font-mono font-bold tracking-wider uppercase flex items-center space-x-2 transition-all shadow-md active:scale-95"
+                className="px-6 py-3 rounded-xl bg-navy-surface hover:bg-navy-elevated border border-navy-border hover:border-electric-sky text-warm-white text-xs font-mono font-bold tracking-wider uppercase flex items-center space-x-2 transition-all shadow-md active:scale-95"
               >
-                <ArrowUp className="w-4 h-4 text-racing-red" />
-                <span>RETURN TO GRID // TOP</span>
+                <ArrowUp className="w-4 h-4 text-electric-sky" />
+                <span>RETURN TO START // TOP</span>
               </button>
 
             </div>
@@ -152,9 +175,9 @@ export const ContactSection = ({ reducedMotion }: ContactSectionProps) => {
         </div>
 
         {/* Semantic Bottom Footer */}
-        <div className="pt-8 border-t border-charcoal-border/50 flex flex-col md:flex-row items-center justify-between text-xs font-mono text-silver gap-4">
+        <div className="pt-8 border-t border-navy-border/60 flex flex-col md:flex-row items-center justify-between text-xs font-mono text-silver gap-4">
           <div className="flex items-center space-x-2">
-            <span className="font-bold text-warm-white">SHREYAS ANAND</span>
+            <span className="font-bold text-warm-white">{PORTFOLIO_CONFIG.personal.name}</span>
             <span>—</span>
             <span>BUILT TO BUILD</span>
             <span className="text-silver-dark">•</span>
@@ -162,9 +185,9 @@ export const ContactSection = ({ reducedMotion }: ContactSectionProps) => {
           </div>
 
           <div className="flex items-center space-x-4 text-silver-dark text-[11px]">
-            <span>ENGINEERED WITH REACT + TS + TAILWIND</span>
+            <span>REACT 19 + TYPESCRIPT + TAILWIND CSS</span>
             <span>|</span>
-            <span className="text-silver">NO FAKE CREDENTIALS</span>
+            <span className="text-silver-light">DEPLOYED ON CLOUDFLARE PAGES</span>
           </div>
         </div>
 

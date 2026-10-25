@@ -24,6 +24,9 @@ export interface Achievement {
   badge: string;
   description: string;
   verifiedDetails: string[];
+  highlight?: boolean;
+  grantAmount?: string;
+  projectInnovation?: string;
 }
 
 export interface SkillCategory {
@@ -206,8 +209,25 @@ export const PORTFOLIO_CONFIG = {
 
   achievements: [
     {
-      id: "synchrony-atmos26",
+      id: "inspire-manak",
       number: "01",
+      title: "INSPIRE MANAK AWARDS",
+      organization: "Department of Science and Technology (DST) Innovation Scheme",
+      context: "National Innovation Competition",
+      badge: "₹10,000 CASH AWARD",
+      highlight: true,
+      grantAmount: "₹10,000",
+      projectInnovation: "Smart Bin Innovation",
+      description: "Awarded ₹10,000 for the Smart Bin innovation in the prestigious INSPIRE MANAK competition, recognizing grassroots innovation, initiative, and creative problem-solving.",
+      verifiedDetails: [
+        "Official INSPIRE MANAK AWARDS recipient",
+        "Awarded ₹10,000 for Smart Bin innovation",
+        "Competition win recognizing original design & problem-solving",
+      ],
+    },
+    {
+      id: "synchrony-atmos26",
+      number: "02",
       title: "Winner — Synchrony Credit Analytics Hackathon",
       organization: "Synchrony Financial / Atmos 26",
       context: "BITS Pilani Flagship Technical Fest",
@@ -221,7 +241,7 @@ export const PORTFOLIO_CONFIG = {
     },
     {
       id: "election-quiz",
-      number: "02",
+      number: "03",
       title: "State-Level Award Winner",
       organization: "State Election Commission Competition",
       context: "State-Level Civic & Political Analytics Quiz",

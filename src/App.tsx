@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
-import { ScrollCircuitSpine } from './components/ScrollCircuitSpine';
 import { AboutSection } from './components/AboutSection';
 import { GarageSection } from './components/GarageSection';
 import { F1ExperienceSection } from './components/F1ExperienceSection';
@@ -12,7 +11,6 @@ import { SkillsSection } from './components/SkillsSection';
 import { PersonalitySection } from './components/PersonalitySection';
 import { InteractivePlayground } from './components/InteractivePlayground';
 import { ContactSection } from './components/ContactSection';
-import { ScrollVelocityHUD } from './components/ScrollVelocityHUD';
 
 export function App() {
   const [reducedMotion, setReducedMotion] = useState<boolean>(() => {
@@ -22,7 +20,7 @@ export function App() {
     return false;
   });
 
-  // Listen to OS level prefers-reduced-motion changes
+  // Listen to OS-level prefers-reduced-motion changes
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return;
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -32,70 +30,60 @@ export function App() {
   }, []);
 
   return (
-    <div className={`min-h-screen bg-graphite text-warm-white selection:bg-racing-red selection:text-white ${reducedMotion ? 'reduced-motion' : ''}`}>
-      {/* Floating Speedometer & Cockpit HUD */}
-      <ErrorBoundary>
-        <ScrollVelocityHUD reducedMotion={reducedMotion} />
-      </ErrorBoundary>
-
-      {/* Circuit Spine Progress Rail (2XL screens) */}
-      <ErrorBoundary>
-        <ScrollCircuitSpine reducedMotion={reducedMotion} />
-      </ErrorBoundary>
-
-      {/* Main Top Navigation & Status Bar */}
+    <div className={`min-h-screen bg-graphite text-warm-white selection:bg-electric-sky selection:text-graphite ${reducedMotion ? 'reduced-motion' : ''}`}>
+      {/* Sleek Top Navigation Bar */}
       <ErrorBoundary>
         <Navigation reducedMotion={reducedMotion} setReducedMotion={setReducedMotion} />
       </ErrorBoundary>
 
-      {/* Main Content Area */}
+      {/* Main Content Area: Traversal through Distinct Visual Worlds */}
       <main id="main-content" className="relative z-10">
-        {/* Sector 01: Starting Grid */}
+        {/* Chapter 01: Hero / Starting Grid (Deep Navy, Electric Blue & Purple) */}
         <ErrorBoundary>
           <Hero reducedMotion={reducedMotion} />
         </ErrorBoundary>
 
-        {/* Sector 02: About / Origins & Vector */}
+        {/* Chapter 02: About / Trajectory & Origins (Obsidian, Indigo & Titanium) */}
         <ErrorBoundary>
           <AboutSection />
         </ErrorBoundary>
 
-        {/* Sector 03: The Garage / Projects & Case Studies */}
+        {/* Chapter 03: The Garage / Engineering Workbench & Projects (Cyan, Emerald & Sapphire) */}
         <ErrorBoundary>
           <GarageSection />
         </ErrorBoundary>
 
-        {/* Sector 04: F1 — The Main Event (Defining Feature) */}
+        {/* Chapter 04: Formula 1 / Motorsport Art Direction (Asphalt Charcoal & Racing Red) */}
         <ErrorBoundary>
           <F1ExperienceSection reducedMotion={reducedMotion} />
         </ErrorBoundary>
 
-        {/* Sector 05: Liverpool FC Interlude */}
+        {/* Chapter 05: Liverpool FC Interlude (Anfield Crimson & Gold) */}
         <ErrorBoundary>
           <LiverpoolSection />
         </ErrorBoundary>
 
-        {/* Sector 06: Achievements / Results That Matter */}
+        {/* Chapter 06: Innovation & Achievements / Ideas That Make An Impact (Rich Sapphire, Amber & Gold) */}
         <ErrorBoundary>
           <AchievementsSection />
         </ErrorBoundary>
 
-        {/* Sector 07: Skills / What I'm Building With */}
+        {/* Chapter 07: Skills / Technical Arsenal (Emerald & Neon Cyan) */}
         <ErrorBoundary>
           <SkillsSection />
         </ErrorBoundary>
 
-        {/* Sector 08: Personality / Not Here To Stand Still */}
+        {/* Chapter 08: Personality / Mindset & Ethos (Electric Violet & Amber) */}
         <ErrorBoundary>
           <PersonalitySection />
         </ErrorBoundary>
 
-        {/* Sector 09: Interactive Playground / Apex Simulator */}
+        {/* Chapter 09: Apex Simulator / Interactive Telemetry Bench */}
         <ErrorBoundary>
           <InteractivePlayground reducedMotion={reducedMotion} />
         </ErrorBoundary>
 
-        {/* Sector 10: Next Grid / Contact & Paddock */}
+        {/* Chapter 10: Finale / Contact & Paddock Directory (Electric Navy Finale) */}
         <ErrorBoundary>
           <ContactSection reducedMotion={reducedMotion} />
         </ErrorBoundary>
