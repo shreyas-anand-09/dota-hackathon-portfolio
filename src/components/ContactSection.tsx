@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { Mail, Copy, Check, ArrowUp, MapPin, Send } from 'lucide-react';
-import { ExplodedStageIndicator } from './ExplodedStageIndicator';
 
 interface ContactSectionProps {
   reducedMotion: boolean;
@@ -33,15 +32,8 @@ export const ContactSection = ({ reducedMotion }: ContactSectionProps) => {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto space-y-14 relative z-10">
-        {/* Exploded Architecture Subsystem Tracker */}
-        <ExplodedStageIndicator
-          moduleCode="MOD-09"
-          category="COMMUNICATIONS"
-          title="Paddock Terminal & Direct Comms"
-          coords="X: 0mm, Y: +165mm, Z: +70mm"
-          accentColor="#7C3AED"
-        />
+      <div className="max-w-7xl mx-auto space-y-20 relative z-10">
+        {/* Sector Tag & Section Header */}
         
         {/* Sector Tag & Section Header */}
         <div className="space-y-4">

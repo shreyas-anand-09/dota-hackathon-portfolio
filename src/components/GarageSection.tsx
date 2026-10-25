@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { PORTFOLIO_CONFIG, type Project } from '../data/portfolioData';
 import { Trophy, Clock, ChevronRight, Sliders, Layers, Smartphone, X, BarChart3, Terminal } from 'lucide-react';
-import { ExplodedStageIndicator } from './ExplodedStageIndicator';
 
 export const GarageSection = () => {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
@@ -28,16 +27,7 @@ export const GarageSection = () => {
 
   return (
     <section id="garage" className="py-24 px-4 lg:px-8 bg-graphite border-b border-charcoal-border/50 relative">
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Exploded Architecture Subsystem Tracker */}
-        <ExplodedStageIndicator
-          moduleCode="MOD-03"
-          category="PRIMARY COMPUTATION"
-          title="The Garage & Case Studies"
-          coords="X: +140mm, Y: -40mm, Z: +40mm"
-          accentColor="#E10600"
-        />
-        
+      <div className="max-w-7xl mx-auto space-y-20">
         {/* Sector Tag & Section Header */}
         <div className="space-y-4">
           <div className="flex items-center space-x-2 text-xs font-mono">

@@ -1,6 +1,5 @@
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { Award, CheckCircle, Trophy, Sparkles, Lightbulb, ShieldCheck } from 'lucide-react';
-import { ExplodedStageIndicator } from './ExplodedStageIndicator';
 
 export const AchievementsSection = () => {
   const achievements = PORTFOLIO_CONFIG.achievements;
@@ -19,16 +18,7 @@ export const AchievementsSection = () => {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
-        {/* Exploded Architecture Subsystem Tracker */}
-        <ExplodedStageIndicator
-          moduleCode="MOD-06"
-          category="HONORS & PATENTS"
-          title="Innovation Pod & MANAK Awards"
-          coords="X: -80mm, Y: +125mm, Z: +50mm"
-          accentColor="#F59E0B"
-        />
-        
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         {/* Sector Tag & Section Header */}
         <div className="space-y-4">
           <div className="flex items-center space-x-2 text-xs font-mono">

@@ -60,7 +60,6 @@ export const PORTFOLIO_CONFIG = {
   
   navigation: [
     { label: "GRID", href: "#hero", sector: "S1" },
-    { label: "3D MACHINE", href: "#exploded-view", sector: "3D" },
     { label: "ABOUT", href: "#about", sector: "S2" },
     { label: "GARAGE", href: "#garage", sector: "S3" },
     { label: "F1 EXPERIENCE", href: "#f1-experience", sector: "S4" },

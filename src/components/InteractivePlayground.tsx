@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Play, Pause, RotateCcw, Thermometer } from 'lucide-react';
-import { ExplodedStageIndicator } from './ExplodedStageIndicator';
 
 interface InteractivePlaygroundProps {
   reducedMotion: boolean;
@@ -51,16 +50,7 @@ export const InteractivePlayground = ({ reducedMotion }: InteractivePlaygroundPr
 
   return (
     <section id="playground" className="py-24 px-4 lg:px-8 bg-graphite border-b border-charcoal-border/50 relative">
-      <div className="max-w-7xl mx-auto space-y-12">
-        {/* Exploded Architecture Subsystem Tracker */}
-        <ExplodedStageIndicator
-          moduleCode="MOD-08"
-          category="SIMULATOR BENCH"
-          title="Apex Playground & Kinematics"
-          coords="X: +40mm, Y: +140mm, Z: +60mm"
-          accentColor="#E10600"
-        />
-        
+      <div className="max-w-7xl mx-auto space-y-16">
         {/* Sector Tag & Section Header */}
         <div className="space-y-4">
           <div className="flex items-center space-x-2 text-xs font-mono">

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { Globe, Compass, Code, Wrench, Zap, MapPin } from 'lucide-react';
-import { ExplodedStageIndicator } from './ExplodedStageIndicator';
 
 export const AboutSection = () => {
   const [selectedWaypoint, setSelectedWaypoint] = useState<number>(2); // Default to BITS Pilani
@@ -21,16 +20,7 @@ export const AboutSection = () => {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
-        {/* Exploded Architecture Subsystem Tracker */}
-        <ExplodedStageIndicator
-          moduleCode="MOD-02"
-          category="NAVIGATION MATRIX"
-          title="Formative Vector & Trajectory"
-          coords="X: -140mm, Y: -40mm, Z: +30mm"
-          accentColor="#38BDF8"
-        />
-        
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         {/* Sector Tag & Section Header */}
         <div className="space-y-4">
           <div className="flex items-center space-x-2 text-xs font-mono">

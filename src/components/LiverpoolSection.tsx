@@ -1,6 +1,5 @@
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { Shield } from 'lucide-react';
-import { ExplodedStageIndicator } from './ExplodedStageIndicator';
 
 export const LiverpoolSection = () => {
   return (
@@ -12,16 +11,7 @@ export const LiverpoolSection = () => {
         aria-hidden="true" 
       />
 
-      <div className="max-w-7xl mx-auto space-y-8 relative z-10">
-        {/* Exploded Architecture Subsystem Tracker */}
-        <ExplodedStageIndicator
-          moduleCode="MOD-05"
-          category="CULTURAL ETHOS"
-          title="Merseyside Tactical Press Hub"
-          coords="X: -150mm, Y: +55mm, Z: +20mm"
-          accentColor="#DC2626"
-        />
-        
+      <div className="max-w-7xl mx-auto space-y-10 relative z-10">
         {/* Sector Tag */}
         <div className="flex items-center space-x-2 text-xs font-mono">
           <span className="w-2 h-2 rounded-full bg-racing-red" />

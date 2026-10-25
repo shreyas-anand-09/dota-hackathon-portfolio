@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { Code, Wrench, BarChart2, Hammer, CheckCircle2, Cpu } from 'lucide-react';
-import { ExplodedStageIndicator } from './ExplodedStageIndicator';
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState<string>('code');
@@ -32,16 +31,7 @@ export const SkillsSection = () => {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
-        {/* Exploded Architecture Subsystem Tracker */}
-        <ExplodedStageIndicator
-          moduleCode="MOD-07"
-          category="SUBSYSTEM SPECS"
-          title="Technical Arsenal & Capabilities"
-          coords="X: +80mm, Y: +125mm, Z: +50mm"
-          accentColor="#10B981"
-        />
-        
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         {/* Sector Tag & Section Header */}
         <div className="space-y-4">
           <div className="flex items-center space-x-2 text-xs font-mono">
