@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
+import { ExplodedMachineAssembly } from './components/ExplodedMachineAssembly';
 import { AboutSection } from './components/AboutSection';
 import { GarageSection } from './components/GarageSection';
 import { F1ExperienceSection } from './components/F1ExperienceSection';
@@ -12,6 +13,7 @@ import { PersonalitySection } from './components/PersonalitySection';
 import { InteractivePlayground } from './components/InteractivePlayground';
 import { ContactSection } from './components/ContactSection';
 import { SectionDivider } from './components/SectionDivider';
+import { ExplodedArchitectureDock } from './components/ExplodedArchitectureDock';
 import { useGsapHelicalScroll } from './hooks/useGsapHelicalScroll';
 
 export function App() {
@@ -43,13 +45,21 @@ export function App() {
 
       {/* Main Content Area: Smooth, Stable, Creative Section Transitions with Scroll-Snapping */}
       <main id="main-content" className="relative z-10">
-        {/* Chapter 01: Hero / Starting Grid */}
+        {/* Chapter 01: Hero / Starting Grid + BITS Pilani 3D Campus */}
         <ErrorBoundary>
           <Hero reducedMotion={reducedMotion} />
         </ErrorBoundary>
 
-        {/* Helical Transition Bridge: Hero ➔ About */}
-        <SectionDivider variant="blue-wave" label="HELIX // TRAJECTORY SPIRAL" />
+        {/* Helical Transition Bridge: Hero ➔ 3D Exploded Assembly */}
+        <SectionDivider variant="blue-wave" label="3D EXPLODED MACHINE // ARCHITECTURE MATRIX" />
+
+        {/* Interactive 3D Exploded Machine Architecture Overview */}
+        <ErrorBoundary>
+          <ExplodedMachineAssembly reducedMotion={reducedMotion} />
+        </ErrorBoundary>
+
+        {/* Helical Transition Bridge: Exploded Machine ➔ About */}
+        <SectionDivider variant="circuit-wire" label="HELIX // TRAJECTORY SPIRAL" />
 
         {/* Chapter 02: About / Trajectory & Origins */}
         <ErrorBoundary>
@@ -120,6 +130,11 @@ export function App() {
           <ContactSection reducedMotion={reducedMotion} />
         </ErrorBoundary>
       </main>
+
+      {/* Futuristic 3D Architecture Subsystem Quick-Map Dock */}
+      <ErrorBoundary>
+        <ExplodedArchitectureDock reducedMotion={reducedMotion} />
+      </ErrorBoundary>
     </div>
   );
 }

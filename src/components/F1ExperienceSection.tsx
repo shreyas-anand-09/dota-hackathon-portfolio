@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
 import { Play, Pause, RotateCcw, Activity, Radio, Flag, CheckCircle2 } from 'lucide-react';
+import { ExplodedStageIndicator } from './ExplodedStageIndicator';
 
 interface F1ExperienceSectionProps {
   reducedMotion: boolean;
@@ -72,7 +73,15 @@ export const F1ExperienceSection = ({ reducedMotion }: F1ExperienceSectionProps)
         aria-hidden="true" 
       />
 
-      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        {/* Exploded Architecture Subsystem Tracker */}
+        <ExplodedStageIndicator
+          moduleCode="MOD-04"
+          category="KINEMATIC DYNAMICS"
+          title="Autódromo Telemetry & Aerodynamics"
+          coords="X: +150mm, Y: +55mm, Z: +20mm"
+          accentColor="#E10600"
+        />
         
         {/* Section Header */}
         <div className="space-y-4">

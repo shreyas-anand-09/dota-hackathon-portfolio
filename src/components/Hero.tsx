@@ -1,27 +1,12 @@
-import { useState } from 'react';
 import { PORTFOLIO_CONFIG } from '../data/portfolioData';
-import { ArrowRight, Trophy, Cpu, Terminal, Award, ChevronDown } from 'lucide-react';
+import { ArrowRight, Trophy, Cpu, Award, Terminal, ChevronDown } from 'lucide-react';
+import { BitsPilaniCampus3D } from './BitsPilaniCampus3D';
 
 interface HeroProps {
   reducedMotion: boolean;
 }
 
 export const Hero = ({ reducedMotion }: HeroProps) => {
-  const [interactiveMode, setInteractiveMode] = useState<'kinematics' | 'aero' | 'compute'>('kinematics');
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (reducedMotion) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 16;
-    setMousePos({ x: isNaN(x) ? 0 : x, y: isNaN(y) ? 0 : y });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePos({ x: 0, y: 0 });
-  };
-
   const scrollTo = (href: string) => {
     const el = document.querySelector(href);
     if (el) {
@@ -29,14 +14,9 @@ export const Hero = ({ reducedMotion }: HeroProps) => {
     }
   };
 
-  const mouseX = mousePos?.x ?? 0;
-  const mouseY = mousePos?.y ?? 0;
-
   return (
     <section
       id="hero"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       className="relative min-h-screen pt-32 pb-20 px-4 lg:px-8 flex flex-col justify-between overflow-hidden bg-navy-deep bg-grid-subtle border-b border-navy-border/60"
     >
       {/* Cinematic Ambient Lighting: Deep Navy, Electric Blue, Vivid Purple */}
@@ -172,168 +152,9 @@ export const Hero = ({ reducedMotion }: HeroProps) => {
           </div>
         </div>
 
-        {/* Right Column: 3D Perspective Engineering Matrix Centerpiece */}
+        {/* Right Column: 3D Interactive BITS Pilani Hyderabad Campus Centerpiece */}
         <div className="lg:col-span-5 relative flex items-center justify-center">
-          <div
-            className="w-full max-w-[480px] aspect-square rounded-2xl bg-navy-surface/80 border border-navy-border/80 p-5 relative overflow-hidden backdrop-blur-xl shadow-2xl transition-transform duration-300"
-            style={{
-              transform: reducedMotion
-                ? 'none'
-                : `perspective(1000px) rotateY(${mouseX * 0.35}deg) rotateX(${-mouseY * 0.35}deg)`,
-            }}
-          >
-            {/* Top Interactive Mode Switcher */}
-            <div className="flex items-center justify-between pb-3 border-b border-navy-border/60 text-[11px] font-mono">
-              <div className="flex items-center space-x-2">
-                <span className="w-2 h-2 rounded-full bg-electric-sky animate-pulse" />
-                <span className="text-warm-white font-bold tracking-wider">ENGINEERING MATRIX</span>
-              </div>
-              <div className="flex items-center space-x-1 bg-navy-elevated p-1 rounded-lg border border-navy-border/60">
-                <button
-                  onClick={() => setInteractiveMode('kinematics')}
-                  className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${
-                    interactiveMode === 'kinematics'
-                      ? 'bg-electric-blue text-white'
-                      : 'text-silver hover:text-warm-white'
-                  }`}
-                >
-                  KINEMATICS
-                </button>
-                <button
-                  onClick={() => setInteractiveMode('aero')}
-                  className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${
-                    interactiveMode === 'aero'
-                      ? 'bg-electric-cyan text-graphite'
-                      : 'text-silver hover:text-warm-white'
-                  }`}
-                >
-                  AERO
-                </button>
-                <button
-                  onClick={() => setInteractiveMode('compute')}
-                  className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${
-                    interactiveMode === 'compute'
-                      ? 'bg-vivid-purple text-white'
-                      : 'text-silver hover:text-warm-white'
-                  }`}
-                >
-                  SYSTEMS
-                </button>
-              </div>
-            </div>
-
-            {/* Interactive Engineering Schematic SVG Canvas */}
-            <div className="relative w-full h-[320px] flex items-center justify-center my-2">
-              <svg viewBox="0 0 400 400" className="w-full h-full" fill="none">
-                <defs>
-                  <linearGradient id="vectorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#38BDF8" />
-                    <stop offset="50%" stopColor="#2563EB" />
-                    <stop offset="100%" stopColor="#7C3AED" />
-                  </linearGradient>
-                </defs>
-
-                {/* Coordinate Grid & Circles */}
-                <circle cx="200" cy="200" r="165" stroke="#334155" strokeWidth="1" strokeDasharray="4 6" opacity="0.4" />
-                <circle cx="200" cy="200" r="120" stroke="#334155" strokeWidth="1" opacity="0.5" />
-                <circle cx="200" cy="200" r="75" stroke="#334155" strokeWidth="1" strokeDasharray="3 4" opacity="0.6" />
-                <line x1="200" y1="20" x2="200" y2="380" stroke="#334155" strokeWidth="1" opacity="0.3" />
-                <line x1="20" y1="200" x2="380" y2="200" stroke="#334155" strokeWidth="1" opacity="0.3" />
-
-                {/* Mode: Kinematics - Orbiting vectors & geometric trajectory */}
-                {interactiveMode === 'kinematics' && (
-                  <g>
-                    {/* Isometric 3D Projection Cube */}
-                    <path
-                      d="M 200 120 L 270 160 L 270 240 L 200 280 L 130 240 L 130 160 Z"
-                      stroke="#38BDF8"
-                      strokeWidth="2"
-                      fill="rgba(56, 189, 248, 0.05)"
-                    />
-                    <line x1="200" y1="120" x2="200" y2="200" stroke="#38BDF8" strokeWidth="1.5" />
-                    <line x1="270" y1="160" x2="200" y2="200" stroke="#38BDF8" strokeWidth="1.5" />
-                    <line x1="130" y1="160" x2="200" y2="200" stroke="#38BDF8" strokeWidth="1.5" />
-                    <line x1="200" y1="200" x2="200" y2="280" stroke="#38BDF8" strokeWidth="2" strokeDasharray="3 3" />
-
-                    {/* Dynamic Vector Arrows */}
-                    <line x1="200" y1="200" x2="290" y2="110" stroke="#F59E0B" strokeWidth="2.5" markerEnd="url(#arrow)" />
-                    <circle cx="290" cy="110" r="4" fill="#F59E0B" />
-                    <text x="300" y="115" fill="#F59E0B" fontSize="10" fontFamily="JetBrains Mono" fontWeight="bold">v_vec: 345 m/s</text>
-
-                    <line x1="200" y1="200" x2="110" y2="100" stroke="#10B981" strokeWidth="2" />
-                    <circle cx="110" cy="100" r="4" fill="#10B981" />
-                    <text x="45" y="95" fill="#10B981" fontSize="10" fontFamily="JetBrains Mono">a_tan: 4.8g</text>
-
-                    <text x="145" y="320" fill="#94A3B8" fontSize="10" fontFamily="JetBrains Mono">
-                      RIGID BODY TRANSLATION
-                    </text>
-                  </g>
-                )}
-
-                {/* Mode: Aero - Fluid streamlines & pressure gradients */}
-                {interactiveMode === 'aero' && (
-                  <g>
-                    {/* Airfoil Cross-Section (NACA Profile) */}
-                    <path
-                      d="M 90 200 C 130 160, 220 165, 310 200 C 220 220, 130 215, 90 200 Z"
-                      fill="rgba(6, 182, 212, 0.15)"
-                      stroke="#06B6D4"
-                      strokeWidth="2.5"
-                    />
-                    
-                    {/* Upper Streamlines (High Speed / Low Pressure) */}
-                    <path d="M 60 160 Q 200 120 340 170" stroke="#38BDF8" strokeWidth="2" strokeDasharray="5 4" />
-                    <path d="M 60 140 Q 200 100 340 150" stroke="#38BDF8" strokeWidth="1.5" strokeDasharray="3 4" opacity="0.7" />
-                    <text x="140" y="110" fill="#38BDF8" fontSize="10" fontFamily="JetBrains Mono">LOW PRESSURE (LIFT/DOWNFORCE)</text>
-
-                    {/* Lower Streamlines (Stagnation) */}
-                    <path d="M 60 240 Q 200 255 340 230" stroke="#F97316" strokeWidth="2" strokeDasharray="5 4" />
-                    <text x="135" y="275" fill="#F97316" fontSize="10" fontFamily="JetBrains Mono">HIGH PRESSURE BOUNDARY</text>
-
-                    {/* Stagnation Point */}
-                    <circle cx="90" cy="200" r="5" fill="#06B6D4" />
-                    <text x="40" y="225" fill="#06B6D4" fontSize="9" fontFamily="JetBrains Mono">STAGNATION</text>
-                  </g>
-                )}
-
-                {/* Mode: Compute - Computational state machine & coordinate transformation */}
-                {interactiveMode === 'compute' && (
-                  <g>
-                    {/* Graph Network Nodes */}
-                    <circle cx="200" cy="200" r="28" fill="rgba(124, 58, 237, 0.2)" stroke="#7C3AED" strokeWidth="2" />
-                    <text x="180" y="204" fill="#C084FC" fontSize="11" fontFamily="JetBrains Mono" fontWeight="bold">CORE</text>
-
-                    {/* Satellite Nodes */}
-                    <circle cx="120" cy="130" r="18" fill="rgba(37, 99, 235, 0.2)" stroke="#2563EB" strokeWidth="1.5" />
-                    <text x="105" y="134" fill="#38BDF8" fontSize="9" fontFamily="JetBrains Mono">PARSER</text>
-                    <line x1="135" y1="142" x2="180" y2="182" stroke="#334155" strokeWidth="1.5" />
-
-                    <circle cx="280" cy="130" r="18" fill="rgba(16, 185, 129, 0.2)" stroke="#10B981" strokeWidth="1.5" />
-                    <text x="268" y="134" fill="#10B981" fontSize="9" fontFamily="JetBrains Mono">EDA</text>
-                    <line x1="265" y1="142" x2="220" y2="182" stroke="#334155" strokeWidth="1.5" />
-
-                    <circle cx="120" cy="270" r="18" fill="rgba(245, 158, 11, 0.2)" stroke="#F59E0B" strokeWidth="1.5" />
-                    <text x="106" y="274" fill="#F59E0B" fontSize="9" fontFamily="JetBrains Mono">MODEL</text>
-                    <line x1="135" y1="258" x2="180" y2="218" stroke="#334155" strokeWidth="1.5" />
-
-                    <circle cx="280" cy="270" r="18" fill="rgba(225, 6, 0, 0.2)" stroke="#E10600" strokeWidth="1.5" />
-                    <text x="264" y="274" fill="#E10600" fontSize="9" fontFamily="JetBrains Mono">ENGINE</text>
-                    <line x1="265" y1="258" x2="220" y2="218" stroke="#334155" strokeWidth="1.5" />
-
-                    <text x="130" y="335" fill="#94A3B8" fontSize="10" fontFamily="JetBrains Mono">
-                      PIPELINE: PYTHON // PANDAS // NUMPY
-                    </text>
-                  </g>
-                )}
-              </svg>
-            </div>
-
-            {/* Bottom Status Pill */}
-            <div className="pt-2 border-t border-navy-border/60 flex items-center justify-between text-[10px] font-mono text-silver">
-              <span className="text-electric-sky font-semibold">COORDINATES: 17.54°N, 78.57°E</span>
-              <span className="text-warm-white">BITS PILANI HYDERABAD</span>
-            </div>
-          </div>
+          <BitsPilaniCampus3D reducedMotion={reducedMotion} />
         </div>
 
       </div>

@@ -10,26 +10,26 @@ export function useGsapHelicalScroll(reducedMotion: boolean) {
 
     const ctx = gsap.context(() => {
       // Find all major sections and the footer
-      const sections = gsap.utils.toArray<HTMLElement>('main > section, main > footer');
+      const sections = gsap.utils.toArray<HTMLElement>('main > section, main > div#exploded-view, main > footer');
 
       sections.forEach((sec, idx) => {
-        // Obvious 3D helical spiral trajectory:
-        // Section sweeps in from the side along a 3D helical arc
         const isEven = idx % 2 === 0;
-        const xOffset = isEven ? 65 : -65;
-        const rotY = isEven ? 10 : -10;
+        const xOffset = isEven ? 70 : -70;
+        const rotY = isEven ? 12 : -12;
         const rotZ = isEven ? 2 : -2;
 
+        // Phase 1: Camera Approach & Docking (Exploded View ➔ Docked Immersive)
         gsap.fromTo(
           sec,
           {
-            opacity: 0.55,
-            y: 80,
+            opacity: 0.45,
+            y: 90,
             x: xOffset,
             rotationY: rotY,
+            rotationX: 5,
             rotationZ: rotZ,
-            scale: 0.94,
-            transformPerspective: 1200,
+            scale: 0.93,
+            transformPerspective: 1400,
             transformOrigin: isEven ? 'left center' : 'right center',
           },
           {
@@ -37,30 +37,44 @@ export function useGsapHelicalScroll(reducedMotion: boolean) {
             y: 0,
             x: 0,
             rotationY: 0,
+            rotationX: 0,
             rotationZ: 0,
             scale: 1,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: sec,
-              start: 'top 92%',
-              end: 'top 30%',
+              start: 'top 95%',
+              end: 'top 25%',
               scrub: 0.6,
-              // When section is centered and snapped into view, ensure all buttons and interactions are 100% stable
               onEnter: () => {
-                sec.style.willChange = 'transform, opacity';
-              },
-              onLeave: () => {
-                sec.style.willChange = 'auto';
-              },
-              onEnterBack: () => {
-                sec.style.willChange = 'transform, opacity';
+                sec.setAttribute('data-dock-status', 'approaching');
               },
               onLeaveBack: () => {
-                sec.style.willChange = 'auto';
+                sec.setAttribute('data-dock-status', 'exploded');
               },
             },
           }
         );
+
+        // Phase 2: Collapse & Separation (Docked ➔ Receding back into 3D Space)
+        gsap.to(sec, {
+          scale: 0.95,
+          opacity: 0.5,
+          y: -50,
+          rotationX: -4,
+          scrollTrigger: {
+            trigger: sec,
+            start: 'bottom 35%',
+            end: 'bottom top',
+            scrub: 0.6,
+            onEnter: () => {
+              sec.setAttribute('data-dock-status', 'receding');
+            },
+            onLeaveBack: () => {
+              sec.setAttribute('data-dock-status', 'docked');
+            },
+          },
+        });
       });
 
       // Animate all helical transition dividers with a 360-degree rotation spin
