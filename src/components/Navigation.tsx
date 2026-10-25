@@ -68,6 +68,12 @@ export const Navigation = ({ reducedMotion, setReducedMotion }: NavigationProps)
             <Radio className="w-3 h-3 mr-1.5 animate-pulse text-racing-red" />
             LIVE TELEMETRY
           </span>
+          <div className="hidden lg:flex items-center space-x-0.5 h-3">
+            <span className="w-0.5 bg-racing-green animate-pulse h-2" style={{ animationDuration: '0.6s' }} />
+            <span className="w-0.5 bg-racing-green animate-pulse h-3" style={{ animationDuration: '0.4s' }} />
+            <span className="w-0.5 bg-racing-amber animate-pulse h-1.5" style={{ animationDuration: '0.8s' }} />
+            <span className="w-0.5 bg-racing-red animate-pulse h-2.5" style={{ animationDuration: '0.5s' }} />
+          </div>
           <span className="hidden sm:inline-block text-silver-dark">|</span>
           <span className="hidden sm:inline-block text-silver truncate">
             {PORTFOLIO_CONFIG.personal.statusBadge}

@@ -49,7 +49,7 @@ export const PORTFOLIO_CONFIG = {
     degree: "First-Year Mechanical Engineering",
     origin: "Palakkad, Kerala",
     formativeLocation: "Liverpool, UK (9 Years)",
-    email: "shreyas.anand@hyderabad.bits-pilani.ac.in", // Central editable contact
+    email: "f20260632@hyderabad.bits-pilani.ac.in", // Central editable contact
     githubPlaceholder: "https://github.com",
     linkedinPlaceholder: "https://linkedin.com",
     statusBadge: "SYSTEM STATUS: RACING ACTIVE // ATMOS 26 CHAMPION",

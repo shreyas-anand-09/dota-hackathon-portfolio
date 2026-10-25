@@ -12,6 +12,7 @@ import { SkillsSection } from './components/SkillsSection';
 import { PersonalitySection } from './components/PersonalitySection';
 import { InteractivePlayground } from './components/InteractivePlayground';
 import { ContactSection } from './components/ContactSection';
+import { ScrollVelocityHUD } from './components/ScrollVelocityHUD';
 
 export function App() {
   const [reducedMotion, setReducedMotion] = useState<boolean>(() => {
@@ -32,6 +33,11 @@ export function App() {
 
   return (
     <div className={`min-h-screen bg-graphite text-warm-white selection:bg-racing-red selection:text-white ${reducedMotion ? 'reduced-motion' : ''}`}>
+      {/* Floating Speedometer & Cockpit HUD */}
+      <ErrorBoundary>
+        <ScrollVelocityHUD reducedMotion={reducedMotion} />
+      </ErrorBoundary>
+
       {/* Circuit Spine Progress Rail (2XL screens) */}
       <ErrorBoundary>
         <ScrollCircuitSpine reducedMotion={reducedMotion} />

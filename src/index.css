@@ -71,6 +71,8 @@
     #F3F1EB 12px,
     #F3F1EB 24px
   );
+  background-size: 34px 34px;
+  animation: kerbMove 3s linear infinite;
 }
 
 .racing-kerb-subtle {
@@ -81,6 +83,55 @@
     rgba(243, 241, 235, 0.15) 8px,
     rgba(243, 241, 235, 0.15) 16px
   );
+  background-size: 24px 24px;
+}
+
+@keyframes kerbMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 34px 0; }
+}
+
+/* Neon Glow Border Animation */
+@keyframes neonBorder {
+  0%, 100% { border-color: rgba(229, 57, 53, 0.4); box-shadow: 0 0 15px rgba(229, 57, 53, 0.15); }
+  50% { border-color: rgba(0, 230, 118, 0.4); box-shadow: 0 0 25px rgba(0, 230, 118, 0.2); }
+}
+
+.neon-active-border {
+  animation: neonBorder 4s ease-in-out infinite;
+}
+
+/* Glowing Telemetry Scan Beam */
+@keyframes scanline {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+
+.telemetry-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #E53935, #00E676, transparent);
+  box-shadow: 0 0 12px #E53935;
+  animation: scanline 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Speed Lines on Fast Scroll */
+@keyframes speedLines {
+  0% { transform: translateY(-50px); opacity: 0; }
+  50% { opacity: 0.4; }
+  100% { transform: translateY(200px); opacity: 0; }
+}
+
+.speed-line {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(229, 57, 53, 0.7), transparent);
+  animation: speedLines 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* Carbon Fiber subtle texture */
@@ -94,6 +145,16 @@
     linear-gradient(#15191E 25%, #0d1014 25%, #0d1014 50%, transparent 50%, transparent 75%, #181d24 75%, #181d24);
   background-color: #0F1216;
   background-size: 20px 20px;
+}
+
+/* Smooth Card Hover 3D Lift */
+.card-racing-hover {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.card-racing-hover:hover {
+  transform: translateY(-4px) scale(1.008);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(229, 57, 53, 0.25);
+  border-color: rgba(229, 57, 53, 0.6);
 }
 
 /* Reduced motion preference */

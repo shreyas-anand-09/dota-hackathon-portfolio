@@ -62,7 +62,7 @@ export const Hero = ({ reducedMotion }: HeroProps) => {
             </div>
             <span className="hidden sm:inline text-silver-dark">|</span>
             <span className="hidden sm:inline text-warm-white bg-charcoal-surface px-2 py-0.5 rounded border border-charcoal-border">
-              MECHANICAL '28
+              MECHANICAL '30
             </span>
           </div>
         </div>
@@ -129,7 +129,7 @@ export const Hero = ({ reducedMotion }: HeroProps) => {
               <div className="text-sm font-display font-bold text-warm-white mt-1">
                 Mechanical Eng.
               </div>
-              <div className="text-[10px] text-silver-dark font-mono truncate">BITS Pilani '28</div>
+              <div className="text-[10px] text-silver-dark font-mono truncate">BITS Pilani '30</div>
             </div>
           </div>
 

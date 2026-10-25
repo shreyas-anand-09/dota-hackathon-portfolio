@@ -82,9 +82,9 @@ export const AboutSection = () => {
                     }}
                     role="button"
                     tabIndex={0}
-                    className={`relative z-10 cursor-pointer text-left rounded-xl p-6 transition-all border ${
+                    className={`relative z-10 cursor-pointer text-left rounded-xl p-6 transition-all border card-racing-hover ${
                       isSelected
-                        ? 'bg-charcoal-surface border-racing-red shadow-xl shadow-racing-red/10 -translate-y-1'
+                        ? 'bg-charcoal-surface border-racing-red shadow-xl shadow-racing-red/20 -translate-y-1'
                         : 'bg-charcoal-deep/60 border-charcoal-border hover:border-silver/40 hover:bg-charcoal-surface/40'
                     }`}
                   >

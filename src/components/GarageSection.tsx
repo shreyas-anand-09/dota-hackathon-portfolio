@@ -56,7 +56,10 @@ export const GarageSection = () => {
         {/* =========================================================================
             PROJECT 01: SYNCHRONY CREDIT ANALYTICS HACKATHON (FLAGSHIP SHOWCASE)
             ========================================================================= */}
-        <div className="bg-charcoal/90 border-2 border-racing-red/40 rounded-2xl p-6 lg:p-10 shadow-2xl relative overflow-hidden">
+        <div className="bg-charcoal/90 border-2 border-racing-red/40 rounded-2xl p-6 lg:p-10 shadow-2xl relative overflow-hidden card-racing-hover">
+          {/* Scanning Telemetry Beam */}
+          <div className="telemetry-beam" />
+          
           {/* Winner Ribbon Badge */}
           <div className="absolute top-0 right-0 bg-racing-red text-white text-[11px] font-mono font-bold px-4 py-1.5 rounded-bl-xl tracking-wider uppercase flex items-center space-x-1.5 shadow-lg">
             <Trophy className="w-3.5 h-3.5" />
@@ -198,7 +201,8 @@ export const GarageSection = () => {
         {/* =========================================================================
             PROJECT 02: BITS STUDENT SUPER-APP (WORK IN PROGRESS)
             ========================================================================= */}
-        <div className="bg-charcoal/90 border border-charcoal-border rounded-2xl p-6 lg:p-10 shadow-2xl relative overflow-hidden">
+        <div className="bg-charcoal/90 border border-charcoal-border hover:border-racing-amber/50 rounded-2xl p-6 lg:p-10 shadow-2xl relative overflow-hidden card-racing-hover">
+          <div className="telemetry-beam" />
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Interactive Mobile Cockpit Simulator */}
@@ -377,7 +381,8 @@ export const GarageSection = () => {
         {/* =========================================================================
             PROJECT 03: 2D + 3D HYBRID GAME DEVELOPMENT (EXPERIMENTAL)
             ========================================================================= */}
-        <div className="bg-charcoal/90 border border-charcoal-border rounded-2xl p-6 lg:p-10 shadow-2xl relative overflow-hidden">
+        <div className="bg-charcoal/90 border border-charcoal-border hover:border-racing-red/50 rounded-2xl p-6 lg:p-10 shadow-2xl relative overflow-hidden card-racing-hover">
+          <div className="telemetry-beam" />
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Project Overview */}
